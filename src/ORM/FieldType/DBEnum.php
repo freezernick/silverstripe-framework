@@ -221,7 +221,7 @@ class DBEnum extends DBString
         // Get all enum values
         $enumValues = $this->getEnum();
         if (DB::get_schema()->hasField($table, $name)) {
-            $existing = DB::query("SELECT DISTINCT \"{$name}\" FROM \"{$table}\"")->column();
+            $existing = DB::query("SELECT DISTINCT \"{$name}\" FROM \"{$table}\" WHERE \"{$name}\" IS NOT NULL")->column();
             $enumValues = array_unique(array_merge($enumValues, $existing));
         }
 
